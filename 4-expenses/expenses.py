@@ -4,12 +4,20 @@ if not 'руб' in expense:
     print("Некорректный формат суммы")
     exit()
 
-rub, kop = expense.split("руб")
+rub, kop = expense.lower().split("руб")
 
-rub = float(rub.strip())
+try:
+    rub = float(rub.strip())
+except ValueError:
+    print("Некорректный формат суммы")
+    exit()
 
 if len(kop) != 0 and kop.endswith("коп"):
-    kop = float(kop.replace("коп", "").strip()) / 100
+    try:
+        kop = float(kop.replace("коп", "").strip()) / 100
+    except ValueError:
+        print("Некорректный формат суммы")
+        exit()
 else:
     kop = 0
 
