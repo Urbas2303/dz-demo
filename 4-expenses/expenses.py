@@ -1,5 +1,18 @@
-expenses = [100, 43, 96, 12, 5000, 6, 2]
+expense = input("Введи сумму: ")
 
-expenses_tuple = (min(expenses), max(expenses), sum(expenses))
+if not 'руб' in expense:
+    print("Некорректный формат суммы")
+    exit()
 
-print(expenses_tuple)
+rub, kop = expense.split("руб")
+
+rub = float(rub.strip())
+
+if len(kop) != 0 and kop.endswith("коп"):
+    kop = float(kop.replace("коп", "").strip()) / 100
+else:
+    kop = 0
+
+result = rub + kop
+
+print(f"{result:.2f} ₽")
